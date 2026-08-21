@@ -1,0 +1,49 @@
+---
+name: screenshot
+description: >
+  URL を Chromium で開いて画面を画像に保存する。
+  グローバル導入の playwright を自動解決するので NODE_PATH の設定は要らない。
+  「スクリーンショットを撮って」「この画面を見せて」「描画を確認したい」で使う。
+  テキストだけ取れれば済むフェッチ道具はブラウザ描画に使えない
+  （JavaScript で描く画面は空の <div id="root"> しか返らない）。描画が要るならこちら。
+user-invocable: true
+allowed-tools: Bash
+argument-hint: "<URL> <out.png> [--click | --wait <ms> | --vp <WxH> | --full | --dark]"
+---
+
+# screenshot
+
+URL を Chromium（playwright）で開き、画面を png に保存する。
+
+```bash
+node capture.js <url> <out.png> [オプション]
+```
+
+このリポジトリの外から呼ぶときは `capture.js` を絶対パスで指す。
+
+| オプション | 何をするか |
+| - | - |
+| `--wait <ms>` | 読み込み後に待つミリ秒（字体・描画の待ち。既定 2500） |
+| `--vp <WxH>` | 画面の大きさ（既定 1600x1000） |
+| `--click` | 中央を1回クリックする（「クリックで開始」の覆いを消す） |
+| `--full` | ページ全体を撮る（既定は画面に入る範囲だけ） |
+| `--dark` | 暗い配色（`prefers-color-scheme: dark`）で開く |
+
+倍率は 2 倍で固定（`deviceScaleFactor: 2`）。読み込みは `networkidle` まで待ち、
+届かなくても止まらずに進む（上限 30 秒）。
+
+例（発表者ビューの特定のスライド）:
+
+```bash
+node capture.js "http://localhost:5181/?view=presenter&slide=7" out.png --click --wait 4000
+```
+
+## 使えないときの直し方
+
+`playwright を解決できません` と出たら、グローバルへ入れる:
+
+```bash
+npm install -g playwright && playwright install chromium
+```
+
+版番号をここに書かない（書いた瞬間から腐る）。要るときに `--version` で採る。
