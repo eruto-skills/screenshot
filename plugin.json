@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "screenshot",
+  "description": "Open a URL in Chromium and save the rendered screen as a PNG, with viewport, dark mode, and wait options.",
+  "author": {
+    "name": "Eruto Kondo",
+    "email": "erutobusiness@gmail.com"
+  },
+  "homepage": "https://github.com/eruto-skills/screenshot",
+  "repository": "https://github.com/eruto-skills/screenshot",
+  "license": "MIT",
+  "version": "1.1.0"
+}
