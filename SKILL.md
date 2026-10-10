@@ -4,7 +4,7 @@ description: >
   URL を Chromium で開いて画面を画像に保存する。
   グローバル導入の playwright を自動解決するので NODE_PATH の設定は要らない。
   「スクリーンショットを撮って」「この画面を見せて」「描画を確認したい」で使う。
-  テキストだけ取れれば済むフェッチ道具はブラウザ描画に使えない
+  テキストだけ取れれば済むフェッチツールはブラウザ描画に使えない
   （JavaScript で描く画面は空の <div id="root"> しか返らない）。描画が要るならこちら。
 user-invocable: true
 allowed-tools: Bash
